@@ -1,0 +1,51 @@
+part 1
+1 – open mongo shell and view the help
+2 – identify your current working database and show list of available databases
+>>db
+>>show dbs
+
+3 – create a new database called Iti and create a collection named "students". 
+Insert whatever data you want about yourself (include name and age in your details). 
+>>use iti 
+>>db.iti.insert({name:"hadeer", age:28, intake:"42", track:"os"})
+>>db.dropDatabase()
+>>show dbs
+>>db        //still iti 
+>>use iti 
+>>db.students.insert({name:"hadeer", age:28, intake:"42", track:"os"})
+>>show collections
+
+4– show a list of available databases. What did you notice?
+>>show dbs
+iti showed in result
+
+5 – Insert un-structured or semi-structured data for 10 of your friends (include name and age in your details.
+ The documents should have different types of data i.e., arrays, strings, documents, integers).
+>>db.students.insertOne({name:"ahmed", age:25, grade:"A"})
+>>var students=[{ name:"ali", age:24, grades:"A"},{name:"mohamed", age:24,track:"os"}]
+>>students
+>>db.students.insertMany(students)
+>>db.students.find().pretty()
+
+6 – Search for your object by name.
+>>db.students.find({name:"hadeer"}).pretty()
+
+7– Search for your friend(s) by age.
+>>db.students.find({age:24}).pretty()
+>>db.students.find({age:24}).limit(1).pretty()
+>>db.students.find({track:"os",age:{$gt:24}}).pretty()
+
+8 – Search for all of your friends whose age is older than yours.
+>>db.students.find({age:{$lt:28}}).pretty()
+
+9 – delete any of your friends by id.
+>>db.students.find().pretty()
+>>db.students.deleteOne( {"_id": ObjectId("6239f78fb5dee15ad9763902")}); //****
+>>db.students.find().pretty()
+
+10 – view all documents in students' collection in a prettified format.
+>>db.students.find().pretty()
+     
+11 – count all documents in students' collection. (self-learning)
+>>db.students.find().count()  //****
+---------------------------------------------------------
